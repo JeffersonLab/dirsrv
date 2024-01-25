@@ -1,0 +1,8 @@
+services:
+  dirsrv:
+    extends:
+      file: docker-compose.yml
+      service: dirsrv
+    build:
+      context: .
+      dockerfile: Dockerfile

@@ -1,0 +1,11 @@
+services:
+  dirsrv:
+    hostname: dirsrv
+    container_name: dirsrv
+    ports:
+      - "3389:3389"
+      - "3636:3636"
+    environment:
+      DS_DM_PASSWORD: password
+      DS_SUFFIX_NAME: dc=example,dc=com
+      DS_BACKEND_NAME: example
