@@ -13,6 +13,7 @@ RUN mkdir /unicopy \
     && cp /app/scripts/docker-entrypoint.sh /unicopy \
     && cp /app/scripts/docker-healthcheck.sh /unicopy \
     && cp /app/scripts/setup.sh /unicopy \
+    && cp /app/scripts/setup-accounts.sh /unicopy \
     && cp /app/scripts/once.sh /unicopy
 
 ################## Stage 1
