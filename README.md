@@ -8,7 +8,7 @@ Configurable [389 Directory Server](https://www.port389.org/) Docker image.
 ---
 
 ## Overview
-This project provides a docker image which extends the production-oriented [389ds/dirsrv](https://hub.docker.com/r/389ds/dirsrv) and adds features for development and testing.   The Jefferson Lab image sets up a Docker healthcheck, installs client tools, and adds some default configuration for the Jefferson Lab environment.  Configuration is supported via environment variables and bash scripts.
+This project provides a docker image which extends the production-oriented [389ds/dirsrv](https://hub.docker.com/r/389ds/dirsrv) and adds features for development and testing.   The Jefferson Lab image sets up a Docker healthcheck and Docker entrypoint, installs client tools , and adds some default configuration for the Jefferson Lab environment.  The entrypoint integrates with the healthcheck such that the container is "healthy" only when dirsrv is both running and configured.  Configuration is supported via environment variables and a directory of bash scripts that can be overwritten by mounting a volume.
 
 ## Configure
 
