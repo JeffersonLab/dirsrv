@@ -1,5 +1,4 @@
-# TODO: Build image doesn't need gradle.  Just always been my build image...
-ARG BUILD_IMAGE=gradle:7.4-jdk17
+ARG BUILD_IMAGE=alpine:3.19.1
 ARG RUN_IMAGE=389ds/dirsrv:2.4
 
 ################## Stage 0
@@ -12,14 +11,13 @@ COPY . /app
 RUN mkdir /unicopy \
     && cp /app/scripts/docker-entrypoint.sh /unicopy \
     && cp /app/scripts/docker-healthcheck.sh /unicopy \
-    && cp /app/scripts/setup.sh /unicopy \
-    && cp /app/scripts/setup-accounts.sh /unicopy \
     && cp /app/scripts/once.sh /unicopy
 
 ################## Stage 1
 FROM ${RUN_IMAGE} as runner
 COPY --from=builder /unicopy /
 RUN zypper install -y openldap2-client \
+    && mkdir /docker-entrypoint-initdb.d \
     && /once.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --start-interval=5s --retries=5 CMD /docker-healthcheck.sh
