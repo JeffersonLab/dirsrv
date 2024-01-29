@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 ARG BUILD_IMAGE=alpine:3.19.1
 ARG RUN_IMAGE=389ds/dirsrv:2.4
 
