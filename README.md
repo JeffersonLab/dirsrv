@@ -12,6 +12,7 @@ This project provides a docker image which extends the production-oriented [389d
 
 ## Configure
 Mount a volume at `/docker-entrypoint-initdb.d` containing bash and ldif scripts to run, ordered by name ascending.  See [example](https://github.com/JeffersonLab/dirsrv/tree/main/scripts/example/docker-entrypoint-initdb.d).
+
 Environment variables:
 | Name | Description |
 |------|-------------|
