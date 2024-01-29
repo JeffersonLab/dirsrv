@@ -15,7 +15,7 @@ This project provides a docker image which extends the production-oriented [389d
 1. Grab project
 ```
 git clone https://github.com/JeffersonLab/dirsrv
-cd smoothness
+cd dirsrv
 ```
 2. Launch [Compose](https://github.com/docker/compose)
 ```
