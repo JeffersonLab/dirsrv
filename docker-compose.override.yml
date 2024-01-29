@@ -1,0 +1,3 @@
+services:
+  dirsrv:
+    image: jeffersonlab/dirsrv:1.0.0
