@@ -16,5 +16,15 @@ ldapadd -D "cn=Directory Manager" -w ${DS_DM_PASSWORD} -H ldap://localhost:3389 
 dn: cn=testgrp,cn=groups,cn=accounts,${DS_SUFFIX_NAME}
 cn: testgrp
 objectclass: groupOfNames
-member: uid=jdoe,ou=People,${DS_SUFFIX_NAME}
+
 EOF
+
+echo "Add jdoe to group testgrp"
+ldapmodify -D "cn=Directory Manager" -w ${DS_DM_PASSWORD} -H ldap://localhost:3389 -x <<EOF
+dn: cn=testgrp,cn=groups,cn=accounts,${DS_SUFFIX_NAME}
+changetype: modify
+add: member
+member: uid=jdoe,cn=users,cn=accounts,${DS_SUFFIX_NAME}
+EOF
+
+# TODO: memberOf https://www.port389.org/docs/389ds/design/memberof-plugin.html
