@@ -21,6 +21,10 @@ cd smoothness
 ```
 docker compose up
 ```
+3. Query for user jdoe
+```
+docker exec dirsrv ldapsearch -D "cn=Directory Manager" -w password -H ldap://localhost:3389 -x -b cn=users,cn=accounts,dc=example,dc=com uid=jdoe
+```
 
 ## Configure
 Mount a volume at `/docker-entrypoint-initdb.d` containing bash and ldif scripts to run, ordered by name ascending.  See [example](https://github.com/JeffersonLab/dirsrv/tree/main/scripts/example/docker-entrypoint-initdb.d).
