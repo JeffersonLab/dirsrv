@@ -17,8 +17,8 @@ RUN mkdir /unicopy \
 ################## Stage 1
 FROM ${RUN_IMAGE} as runner
 COPY --from=builder /unicopy /
-RUN zypper install -y openldap2-client \
+RUN zypper install -y openldap2-client tini \
     && mkdir /docker-entrypoint-initdb.d \
     && /once.sh
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/sbin/tini", "--", "/docker-entrypoint.sh"]
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --start-interval=5s --retries=5 CMD /docker-healthcheck.sh
