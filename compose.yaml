@@ -10,4 +10,4 @@ services:
       DS_SUFFIX_NAME: dc=example,dc=com
       DS_BACKEND_NAME: example
     volumes:
-      - ./scripts/example/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./scripts/example/initdb.d:/container-entrypoint-initdb.d
