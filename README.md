@@ -26,7 +26,14 @@ docker compose up
 docker exec dirsrv ldapsearch -D "cn=Directory Manager" -w password -H ldap://localhost:3389 -x -b cn=users,cn=accounts,dc=example,dc=com uid=jdoe
 ```
 
-**Note:** root run container local `ldapi` is available, so with container local commands you can replace `-D "cn=Directory Manager" -w password -H ldap://localhost:3389 -x` with `-Y EXTERNAL -H ldapi://%2fdata%2frun%2fslapd-localhost.socket` 
+**Note:** The quickstart uses default password `password` (see [Configure](https://github.com/JeffersonLab/dirsrv#configure)).  However, root run container local `ldapi` is available, so with container local commands you can replace:
+```
+-D "cn=Directory Manager" -w password -H ldap://localhost:3389 -x
+``` 
+with:
+```
+-Y EXTERNAL -H ldapi://%2fdata%2frun%2fslapd-localhost.socket
+``` 
 
 ## Configure
 Mount a volume at `/container-entrypoint-initdb.d` containing bash and ldif scripts to run, ordered by name ascending.  See [example](https://github.com/JeffersonLab/dirsrv/tree/main/scripts/example/initdb.d).
