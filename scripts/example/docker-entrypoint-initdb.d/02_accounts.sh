@@ -7,6 +7,7 @@ dn: uid=jdoe,cn=users,cn=accounts,${DS_SUFFIX_NAME}
 uid: jdoe
 givenName: John
 objectClass: inetorgperson
+objectClass: inetuser
 sn: Doe
 cn: John Doe
 EOF
@@ -26,5 +27,3 @@ changetype: modify
 add: member
 member: uid=jdoe,cn=users,cn=accounts,${DS_SUFFIX_NAME}
 EOF
-
-# TODO: memberOf https://www.port389.org/docs/389ds/design/memberof-plugin.html

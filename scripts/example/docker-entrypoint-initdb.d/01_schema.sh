@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ## Note: we rely on "standard" LDAP schemas as defined in /usr/share/dirsrv/schema
+## And assume memberOf plugin is on
 echo "Creating Backend Database ${DS_BACKEND_NAME}"
 dsconf localhost backend create --suffix="${DS_SUFFIX_NAME}" --be-name="${DS_BACKEND_NAME}"
 
