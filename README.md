@@ -9,7 +9,7 @@ Configurable [389 Directory Server](https://www.port389.org/) Docker image.
 ---
 
 ## Overview
-This project provides a docker image which extends the production-oriented [389ds/dirsrv](https://hub.docker.com/r/389ds/dirsrv) and adds features for development and testing.   The Jefferson Lab image sets up a Docker healthcheck and Docker entrypoint, installs client tools , and adds some default configuration for the Jefferson Lab environment.  The entrypoint integrates with the healthcheck such that the container is "healthy" only when dirsrv is both running and configured.  Configuration is supported via environment variables and a conventional directory named `/docker-entrypoint-initdb.d` of bash and ldif scripts that can be overwritten by mounting a volume.
+This project provides a docker image which extends the production-oriented [389ds/dirsrv](https://hub.docker.com/r/389ds/dirsrv) and adds features for development and testing.   The Jefferson Lab image sets up a container healthcheck and container entrypoint, installs client tools , and adds some default configuration for the Jefferson Lab environment (memberOf plugin is enabled).  The entrypoint integrates with the healthcheck such that the container is "healthy" only when dirsrv is both running and configured.  Configuration is supported via environment variables and a conventional directory named `/container-entrypoint-initdb.d` of bash and ldif scripts that can be overwritten by mounting a volume.
 
 ## Quick Start with Compose
 1. Grab project
@@ -26,14 +26,17 @@ docker compose up
 docker exec dirsrv ldapsearch -D "cn=Directory Manager" -w password -H ldap://localhost:3389 -x -b cn=users,cn=accounts,dc=example,dc=com uid=jdoe
 ```
 
+**Note:** root run container local `ldapi` is available, so with container local commands you can replace `-D "cn=Directory Manager" -w password -H ldap://localhost:3389 -x` with `-Y EXTERNAL -H ldapi://%2fdata%2frun%2fslapd-localhost.socket` 
+
 ## Configure
-Mount a volume at `/docker-entrypoint-initdb.d` containing bash and ldif scripts to run, ordered by name ascending.  See [example](https://github.com/JeffersonLab/dirsrv/tree/main/scripts/example/docker-entrypoint-initdb.d).
+Mount a volume at `/container-entrypoint-initdb.d` containing bash and ldif scripts to run, ordered by name ascending.  See [example](https://github.com/JeffersonLab/dirsrv/tree/main/scripts/example/initdb.d).
 
 Environment variables:
-| Name | Description |
-|------|-------------|
-| DS_DM_PASSWORD | Directory Manager password |
-| DS_SUFFIX_NAME | SUFFIX to use |
+
+| Name            | Description                         |
+|-----------------|-------------------------------------|
+| DS_DM_PASSWORD  | Directory Manager password          |
+| DS_SUFFIX_NAME  | SUFFIX to use                       |
 | DS_BACKEND_NAME | BACKEND (optional, used in example) |
 
 ## Release
