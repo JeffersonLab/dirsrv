@@ -3,7 +3,8 @@ services:
     hostname: dirsrv
     container_name: dirsrv
     ports:
-      - "3389:3389"
+      # See: https://github.com/389ds/389-ds-base/issues/6122
+      - "7389:3389"
       - "3636:3636"
     environment:
       DS_DM_PASSWORD: password

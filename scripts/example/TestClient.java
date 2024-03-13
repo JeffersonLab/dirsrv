@@ -4,7 +4,7 @@ import java.util.*;
 
 public class TestClient {
     public static void main(String[] args) throws NamingException {
-        final String ldapServer = "ldap://localhost:3389";
+        final String ldapServer = "ldap://localhost:7389";
         final String ldapUser = "cn=Directory Manager";
         final String ldapPass = "password";
 
