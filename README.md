@@ -48,5 +48,5 @@ Environment variables:
 
 ## Release
 1. Create a new release on the GitHub Releases page.  The release should enumerate changes and link issues.
-1. [Publish to DockerHub](https://github.com/JeffersonLab/dirsrv/actions/workflows/docker-publish.yml) GitHub Action should run automatically. 
-1. Bump and commit quick start [image version](https://github.com/JeffersonLab/dirsrv/blob/main/docker-compose.override.yml).
+1. The [Publish to DockerHub](https://github.com/JeffersonLab/dirsrv/blob/main/.github/workflows/docker-publish.yml) GitHub Action should run automatically to create, tag, and publish a new demo Docker image, and bump the [compose.override.yaml](https://github.com/JeffersonLab/dirsrv/blob/main/compose.override.yaml) to use the new image.
+
