@@ -45,6 +45,7 @@ jobs:
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
           git checkout main
           sed -i -E 's/[0-9]+(\.[0-9]+)*/${{ steps.meta.outputs.version }}/' compose.override.yaml
           git commit -am "Bump demo compose version to ${{ steps.meta.outputs.version }}"
